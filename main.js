@@ -162,7 +162,7 @@ function showSearchModal(movie) {
 }
 
 // Función para buscar una película
-function searchMovie() {
+function searchMovie(event) {
   const searchInput = document.querySelector('#searchInput');
   const searchValue = searchInput.value.toLowerCase();
 
@@ -179,12 +179,14 @@ function searchMovie() {
     alert('No se encontró ninguna película con los criterios de búsqueda.');
   }
 
-
 }
 
 // Agregar evento al botón de búsqueda
 const bSearch = document.getElementById('bSearch');
-bSearch.addEventListener('click', searchMovie);
+bSearch.addEventListener('click', (event) => {
+  event.preventDefault();
+  searchMovie();
+});
 
 
 
