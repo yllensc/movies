@@ -15,7 +15,7 @@
     <!-- Menu de navegación-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MovieLook</a>
+            <a class="navbar-brand" href="#">MovieLook 🎬 </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
         </div>
     </nav>
     <!-- Carrusel decorativo -->
-    <div class="container">
+    <div class="container-carousel">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -64,12 +64,14 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div><br>
+    </div>
+    <div class="container">
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agrega una nueva peli</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Agrega una nueva peli 🍿📽️ </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -114,28 +116,31 @@
         <!-- HTML del modal de búsqueda -->
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="searchModalLabel">Detalles de la película</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="searchModalClose"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="searchModalLabel">Detalles de la película</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="searchModalClose"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Contenido de la película -->
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <!-- Contenido de la película -->
-                </div>
-              </div>
             </div>
-          </div>          
+        </div>
         <div class="card__div">
             <div class="card__container half-width">
                 <!-- Tarjetas de películas se agregarán dinámicamente aquí -->
             </div>
         </div>
     </div>
-
+    <!-- Archivos js, main y librerías de estilos-->
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

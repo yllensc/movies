@@ -2,15 +2,15 @@
 const moviesMap = new Map();
 
 // Elementos del formulario
-const formAddMovie = document.getElementById('form__addMovie');
-const nameInput = document.getElementById('nameInput');
-const genderInput = document.getElementById('genderInput');
-const timeInput = document.getElementById('timeInput');
-const directorInput = document.getElementById('directorInput');
-const imageInput = document.getElementById('imageInput');
+const formAddMovie = document.getElementById("form__addMovie");
+const nameInput = document.getElementById("nameInput");
+const genderInput = document.getElementById("genderInput");
+const timeInput = document.getElementById("timeInput");
+const directorInput = document.getElementById("directorInput");
+const imageInput = document.getElementById("imageInput");
 
 // Evento submit del formulario para guardar la película
-formAddMovie.addEventListener('submit', (event) => {
+formAddMovie.addEventListener("submit", (event) => {
   event.preventDefault();
   saveMovie();
 });
@@ -34,7 +34,7 @@ function saveMovie() {
     gender: gender,
     time: time,
     director: director,
-    image: ''
+    image: "",
   };
 
   // Guardar la película en el mapa
@@ -44,7 +44,9 @@ function saveMovie() {
   createMovieCard(movie);
 
   // Cerrar el modal de agregar película
-  const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("exampleModal")
+  );
   modal.hide();
 
   // Restablecer los valores del formulario
@@ -73,7 +75,7 @@ function saveMovie() {
 function updateMovieCardImage(movieId, imageURL) {
   const card = document.querySelector(`[data-card-id="${movieId}"]`);
   if (card) {
-    const img = card.querySelector('.card-img-top');
+    const img = card.querySelector(".card-img-top");
     if (img) {
       img.src = imageURL;
     }
@@ -82,57 +84,55 @@ function updateMovieCardImage(movieId, imageURL) {
 
 // Función para crear una nueva tarjeta de película
 function createMovieCard(movie) {
-  const cardContainer = document.querySelector('.card__container');
+  const cardContainer = document.querySelector(".card__container");
 
-  const card = document.createElement('div');
-  card.classList.add('card');
+  const card = document.createElement("div");
+  card.classList.add("card");
   card.dataset.cardId = movie.id;
 
-  const img = document.createElement('img');
-  img.classList.add('card-img-top');
-  img.alt = '...';
+  const img = document.createElement("img");
+  img.classList.add("card-img-top");
+  img.alt = "...";
   img.src = movie.image; // Asignar la URL de la imagen
   card.appendChild(img);
 
-  const cardBody = document.createElement('div');
-  cardBody.classList.add('card-body');
+  const cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
   card.appendChild(cardBody);
 
-  const title = document.createElement('h5');
-  title.classList.add('card-title');
+  const title = document.createElement("h5");
+  title.classList.add("card-title");
   title.textContent = movie.name;
   cardBody.appendChild(title);
 
-  const gender = document.createElement('p');
-  gender.classList.add('card-text');
-  gender.textContent = 'Género: ' + movie.gender;
+  const gender = document.createElement("p");
+  gender.classList.add("card-text");
+  gender.textContent = "Género: " + movie.gender;
   cardBody.appendChild(gender);
 
-  const duration = document.createElement('p');
-  duration.classList.add('card-text');
-  duration.textContent = 'Duración: ' + movie.time;
+  const duration = document.createElement("p");
+  duration.classList.add("card-text");
+  duration.textContent = "Duración: " + movie.time;
   cardBody.appendChild(duration);
 
-  const director = document.createElement('p');
-  director.classList.add('card-text');
-  director.textContent = 'Director: ' + movie.director;
+  const director = document.createElement("p");
+  director.classList.add("card-text");
+  director.textContent = "Director: " + movie.director;
   cardBody.appendChild(director);
 
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-danger');
-  deleteButton.textContent = 'Eliminar';
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("btn", "btn-danger");
+  deleteButton.textContent = "Eliminar";
   cardBody.appendChild(deleteButton);
 
   // Agregar evento para eliminar la película al hacer clic en el botón "Eliminar"
-  deleteButton.addEventListener('click', () => {
+  deleteButton.addEventListener("click", () => {
     deleteMovie(movie.id);
     card.remove();
   });
 
   cardContainer.appendChild(card);
 }
-
-
 
 // Función para eliminar una película
 function deleteMovie(movieId) {
@@ -141,54 +141,58 @@ function deleteMovie(movieId) {
 
 // Función para mostrar el modal de búsqueda
 function showSearchModal(movie) {
-  const modalTitle = document.querySelector('#searchModal .modal-title');
-  const modalBody = document.querySelector('#searchModal .modal-body');
+  const modalTitle = document.querySelector("#searchModal .modal-title");
+  const modalBody = document.querySelector("#searchModal .modal-body");
 
-  modalTitle.textContent = movie.name;
+  modalTitle.textContent = movie.name + "🎭";
   modalBody.innerHTML = `
-    <h5 class="card-title" id="mTitle">${movie.name}</h5>
     <p class="card-text--gender" id="mGender">Género: ${movie.gender}</p>
     <p class="card-text--time" id="mDuration">Duración: ${movie.duration}</p>
     <p class="card-text--director" id="mDirector">Director: ${movie.director}</p>
     <img src="${movie.image}" alt="Portada" class="card-img-top">
   `;
 
-  const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+  const searchModal = new bootstrap.Modal(
+    document.getElementById("searchModal")
+  );
   searchModal.show();
 
   // Cerrar el modal de la búsqueda
-  const modal = bootstrap.Modal.getInstance(document.getElementById('searchModalClose'));
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("searchModalClose")
+  );
   modal.hide();
 }
 
 // Función para buscar una película
 function searchMovie(event) {
-  const searchInput = document.querySelector('#searchInput');
+  const searchInput = document.querySelector("#searchInput");
   const searchValue = searchInput.value.toLowerCase();
+  if (searchValue != null && searchValue.trim() != "") {
+    const matchingMovie = Array.from(moviesMap.values()).find((movie) => {
+      debugger;
+      const movieTitle = movie.name.toLowerCase();
+      const movieDirector = movie.director.toLowerCase();
+      debugger;
+      return (
+        movieTitle.includes(searchValue) || movieDirector.includes(searchValue)
+      );
+    });
 
-  const matchingMovie = Array.from(moviesMap.values()).find((movie) => {
-    const movieTitle = movie.name.toLowerCase();
-    const movieDirector = movie.director.toLowerCase();
-
-    return movieTitle.includes(searchValue) || movieDirector.includes(searchValue);
-  });
-
-  if (matchingMovie) {
-    showSearchModal(matchingMovie);
-  } else {
-    alert('No se encontró ninguna película con los criterios de búsqueda.');
+    if (matchingMovie) {
+      showSearchModal(matchingMovie);
+    } else {
+      Swal.fire(
+        "Lo siento, cineasta",
+        "No tenemos esa peli disponible, ¡Agrégala! :)"
+      );
+    }
   }
-
 }
 
 // Agregar evento al botón de búsqueda
-const bSearch = document.getElementById('bSearch');
-bSearch.addEventListener('click', (event) => {
+const bSearch = document.getElementById("bSearch");
+bSearch.addEventListener("click", (event) => {
   event.preventDefault();
   searchMovie();
 });
-
-
-
-
-
